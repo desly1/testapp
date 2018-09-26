@@ -7,5 +7,8 @@ document.getElementById('app').innerHTML = Sample.say
 
 document.getElementById('formula').value = 999;
 document.querySelector('#formula').value = 9999;
+document.querySelector('#formula').value = 9999;
+document.querySelector('#formula').value = 9999;
+document.querySelector('#formula').value = 9999;
 
 document.querySelector('.form-element').value = 1000;
