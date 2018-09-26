@@ -17,12 +17,13 @@ param2Element.onchange=handleUpdateParam2;
 document.querySelector('#action-add').onclick=sum; // dodawanie handlera na zmiane wartosci
 
 function handleUpdateParam1(ev) { //ev obiekt event ( w tym przypadku onchange ale moze byc click i wiele innych) dodawany przez przegladarke
-    console.log(ev);
-    console.log(ev.target.value); // pobieranie wartosci z inputa
-    resultElement.value=ev.target.value
+    // ev.target.value - pobieranie wartosci z inputa
+    console.log('poprzednia wartosc result', resultElement.value); // pobieranie wartosci z inputa
+    resultElement.value=parseInt(ev.target.value)+parseInt(param2Element.value);
 };
 function handleUpdateParam2(ev) {
-    resultElement.value=ev.target.value
+    resultElement.value=parseInt(ev.target.value)+parseInt(param1Element.value);
+
 };
 
 function sum(ev) {
