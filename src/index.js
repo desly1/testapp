@@ -10,6 +10,13 @@ import Sample from './js/sample.js';
 const param1Element = document.querySelector('[data-myselector="param1"]'); // pobiram i zapisuje do zmiennej element z id param1
 const param2Element = document.querySelector ('#param2');
 const resultElement = document.querySelector('#result');
+const operations = {
+    sum: '+',
+    minus: '-',
+    // todo add more operations here lin minus etc.
+};
+
+let currentOperation = operations.sum;
 
 param1Element.onchange=handleUpdateParam1; // dodawanie handlera (funkcji) obslugujaca zmiane wartosci w inpucie
 param2Element.onchange=handleUpdateParam2;
@@ -17,17 +24,31 @@ param2Element.onchange=handleUpdateParam2;
 document.querySelector('#action-add').onclick=sum; // dodawanie handlera na zmiane wartosci
 
 function handleUpdateParam1(ev) { //ev obiekt event ( w tym przypadku onchange ale moze byc click i wiele innych) dodawany przez przegladarke
-    // ev.target.value - pobieranie wartosci z inputa
-    console.log('poprzednia wartosc result', resultElement.value); // pobieranie wartosci z inputa
-    resultElement.value=parseInt(ev.target.value)+parseInt(param2Element.value);
+    // ev.target.value - pobieranie wartosci inputa z eventu
+    const result = getResult(ev.target.value, param2Element.value);
+    refreshResult(result);
 };
 function handleUpdateParam2(ev) {
-    resultElement.value=parseInt(ev.target.value)+parseInt(param1Element.value);
+    const result = getResult(ev.target.value, param1Element.value);
+    refreshResult(result);
+};
 
+function getResult(param1, param2) {
+    const param1Number = parseInt(param1); 
+    const param2Number = parseInt(param2); 
+    if(currentOperation === operations.sum) {
+        return param1Number + param2Number;
+    }
+    // todo add more ifs here operations handlers here
+}
+
+function refreshResult(result) {
+    resultElement.value = result;
 };
 
 function sum(ev) {
-    
+    currentOperation = operations.sum;
+    refreshResult(param1Element.value, param2Element.value);
 }
 
 
