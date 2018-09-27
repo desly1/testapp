@@ -13,6 +13,8 @@ const resultElement = document.querySelector('#result');
 const operations = {
     sum: '+',
     minus: '-',
+    multiply: '*',
+    divide: '/',
     // todo add more operations here lin minus etc.
 };
 
@@ -22,6 +24,9 @@ param1Element.onchange=handleUpdateParam1; // dodawanie handlera (funkcji) obslu
 param2Element.onchange=handleUpdateParam2;
 
 document.querySelector('#action-add').onclick=sum; // dodawanie handlera na zmiane wartosci
+document.querySelector('#action-minus').onclick=minus
+document.querySelector('#action-multiply').onclick=multiply
+document.querySelector('#action-divide').onclick=divide
 
 function handleUpdateParam1(ev) { //ev obiekt event ( w tym przypadku onchange ale moze byc click i wiele innych) dodawany przez przegladarke
     // ev.target.value - pobieranie wartosci inputa z eventu
@@ -39,6 +44,15 @@ function getResult(param1, param2) {
     if(currentOperation === operations.sum) {
         return param1Number + param2Number;
     }
+    if(currentOperation === operations.minus){
+        return param1Number - param2Number;
+    }
+    if(currentOperation === operations.multiply){
+        return param1Number * param2Number;
+    }
+    if(currentOperation === operation.multiply){
+        return param1Number / param2Number;
+    }
     // todo add more ifs here operations handlers here
 }
 
@@ -49,9 +63,23 @@ function refreshResult(result) {
 function sum(ev) {
     currentOperation = operations.sum;
     refreshResult(param1Element.value, param2Element.value);
-}
+};
 
+function minus(ev){
+    currentOperation = operations.minus;
+    refreshResult(param1Element.value, param2Element.value);
 
+};
+
+function multiply(ev){
+    currentOperation = operations.multiply;
+    refreshResult(param1Element.value, param2Element.value);
+};
+
+function divide(ev){
+    currentOperation = operations.divide;
+    refreshResult(param1Element.value, param2Element.value);
+};
 
 
 // gdzies tam w przegladarce handler (funkcja) jest wywolywana przez skrypt
