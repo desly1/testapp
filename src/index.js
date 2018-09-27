@@ -11,10 +11,10 @@ const param1Element = document.querySelector('[data-myselector="param1"]'); // p
 const param2Element = document.querySelector ('#param2');
 const resultElement = document.querySelector('#result');
 const operations = {
-    sum: '+',
-    minus: '-',
-    multiply: '*',
-    divide: '/',
+    sum: 'sum',
+    minus: 'minus',
+    multiply: 'multiply',
+    divide: 'divide',
     // todo add more operations here lin minus etc.
 };
 
@@ -23,10 +23,38 @@ let currentOperation = operations.sum;
 param1Element.onchange=handleUpdateParam1; // dodawanie handlera (funkcji) obslugujaca zmiane wartosci w inpucie
 param2Element.onchange=handleUpdateParam2;
 
+function sum(ev) {
+    console.log('sum')
+    currentOperation = operations.sum;
+    refreshResult(getResult(param1Element.value, param2Element.value));
+};
+
+function minus(ev){
+    console.log('sum')
+
+    currentOperation = operations.minus;
+    refreshResult(getResult(param1Element.value, param2Element.value));
+
+};
+
+function multiply(ev){
+    console.log(param1Element.value, param2Element.value)
+
+    currentOperation = operations.multiply;
+    refreshResult(getResult(param1Element.value, param2Element.value));
+};
+
+function divide(ev){
+    console.log('sum')
+
+    currentOperation = operations.divide;
+    refreshResult(getResult(param1Element.value, param2Element.value));
+};
+
 document.querySelector('#action-add').onclick=sum; // dodawanie handlera na zmiane wartosci
-document.querySelector('#action-minus').onclick=minus
-document.querySelector('#action-multiply').onclick=multiply
-document.querySelector('#action-divide').onclick=divide
+document.querySelector('#action-minus').onclick=minus;
+document.querySelector('#action-multiply').onclick=multiply;
+document.querySelector('#action-divide').onclick=divide;
 
 function handleUpdateParam1(ev) { //ev obiekt event ( w tym przypadku onchange ale moze byc click i wiele innych) dodawany przez przegladarke
     // ev.target.value - pobieranie wartosci inputa z eventu
@@ -41,7 +69,6 @@ function handleUpdateParam2(ev) {
 function getResult(param1, param2) {
     const param1Number  = parseInt(param1); //????
     const param2Number = parseInt(param2);  //????
-
     if(currentOperation === operations.sum) {
         return param1Number + param2Number;
     }
@@ -51,8 +78,9 @@ function getResult(param1, param2) {
     else if(currentOperation === operations.multiply){
         return param1Number * param2Number;
     }
-    else if(currentOperation === operation.multiply){
-        return param1Number / param2Number;
+    else if(currentOperation === operations.divide){
+        console.log(param1Number / param2Number);
+        return (param1Number / param2Number);
     }
     // todo add more ifs here operations handlers here
 }
@@ -61,26 +89,7 @@ function refreshResult(result) {
     resultElement.value = result;
 };
 
-function sum(ev) {
-    currentOperation = operations.sum;
-    refreshResult(param1Element.value, param2Element.value);
-};
 
-function minus(ev){
-    currentOperation = operations.minus;
-    refreshResult(param1Element.value, param2Element.value);
-
-};
-
-function multiply(ev){
-    currentOperation = operations.multiply;
-    refreshResult(param1Element.value, param2Element.value);
-};
-
-function divide(ev){
-    currentOperation = operations.divide;
-    refreshResult(param1Element.value, param2Element.value);
-};
 
 
 // gdzies tam w przegladarce handler (funkcja) jest wywolywana przez skrypt
