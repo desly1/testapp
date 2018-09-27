@@ -39,20 +39,21 @@ function handleUpdateParam2(ev) {
 };
 
 function getResult(param1, param2) {
-    const param1Number = parseInt(param1); 
-    const param2Number = parseInt(param2); 
+    const param1Number  = parseInt(param1); //????
+    const param2Number = parseInt(param2);  //????
+
     if(currentOperation === operations.sum) {
         return param1Number + param2Number;
-    };
-    if(currentOperation === operations.minus){
+    }
+    else if(currentOperation === operations.minus){
         return param1Number - param2Number;
-    };
-    if(currentOperation === operations.multiply){
+    }
+    else if(currentOperation === operations.multiply){
         return param1Number * param2Number;
-    };
-    if(currentOperation === operation.multiply){
+    }
+    else if(currentOperation === operation.multiply){
         return param1Number / param2Number;
-    };
+    }
     // todo add more ifs here operations handlers here
 }
 
